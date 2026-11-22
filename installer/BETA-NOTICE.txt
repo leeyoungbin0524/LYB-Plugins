@@ -1,0 +1,16 @@
+LYB Live Vocal 0.1.1 - Personal testing beta
+
+This is an experimental vocal processor, not a performance-ready release.
+Pitch assist adds 1024 samples of latency (about 21.3 ms at 48 kHz).
+Pitch correction is experimental and is not formant preserving.
+Only a mono microphone input is supported, with mono or stereo output.
+Use a spare session to check sound, CPU usage and monitoring latency first.
+
+Windows: installs the VST3 in the standard Common Files/VST3 folder.
+macOS: installs AU and VST3 in /Library/Audio/Plug-Ins and the app in /Applications.
+Restart your DAW after installation.
+
+No Windows publisher certificate or Apple Developer ID/notarization is included.
+macOS bundles are locally/ad-hoc signed; the package is not notarized.
+Operating system approval may be required before opening this personal beta.
+This package does not change audio interface, Cubase, Logic or OBS routing.

@@ -1,0 +1,43 @@
+name: Build beta installers
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'Source/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'installer/**'
+      - 'CMakeLists.txt'
+      - '.github/workflows/build-installers.yml'
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build, test and package
+        shell: pwsh
+        run: ./scripts/build-windows.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LYB-Live-Vocal-Windows-x64-Beta
+          path: dist/*.exe
+          if-no-files-found: error
+          retention-days: 14
+  macos:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build, test, validate AU and package
+        shell: bash
+        run: bash scripts/build-macos.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LYB-Live-Vocal-macOS-Universal-Beta
+          path: dist/*.pkg
+          if-no-files-found: error
+          retention-days: 14
